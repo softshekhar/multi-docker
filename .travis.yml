@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t softshekhar/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t shekharhub/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run softshekhar/react-test npm test -- --coverage
+  - docker run shekharhub/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t softshekhar/multi-client ./client
-  - docker build -t softshekhar/multi-nginx ./nginx
-  - docker build -t softshekhar/multi-server ./server
-  - docker build -t softshekhar/multi-worker ./worker
+  - docker build -t shekharhub/multi-client ./client
+  - docker build -t shekharhub/multi-nginx ./nginx
+  - docker build -t shekharhub/multi-server ./server
+  - docker build -t shekharhub/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push softshekhar/multi-client
-  - docker push softshekhar/multi-nginx
-  - docker push softshekhar/multi-server
-  - docker push softshekhar/multi-worker
+  - docker push shekharhub/multi-client
+  - docker push shekharhub/multi-nginx
+  - docker push shekharhub/multi-server
+  - docker push shekharhub/multi-worker
